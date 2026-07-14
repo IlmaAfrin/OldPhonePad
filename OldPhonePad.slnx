@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="OldPhonePad.Core/OldPhonePad.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
