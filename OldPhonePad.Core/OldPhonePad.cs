@@ -1,5 +1,4 @@
-﻿
-using System.Text;
+﻿using System.Text;
 
 namespace OldPhonePad.Core;
 
@@ -18,6 +17,11 @@ public static class OldPhonePad
         ['0'] = " "
     };
 
+    /// <summary>
+    /// Decodes an old mobile phone keypad message.
+    /// </summary>
+    /// <param name="input">Encoded message terminated by '#'.</param>
+    /// <returns>The decoded text.</returns>
     public static string Decode(string input)
     {
         ValidateInput(input);
@@ -38,12 +42,12 @@ public static class OldPhonePad
                 nameof(input));
         }
 
-        foreach (char c in input)
+        foreach (char character in input)
         {
-            if (!char.IsDigit(c) &&
-                c != ' ' &&
-                c != '*' &&
-                c != '#')
+            if (!char.IsDigit(character) &&
+                character != ' ' &&
+                character != '*' &&
+                character != '#')
             {
                 throw new ArgumentException(
                     "Input contains invalid characters. Only digits, spaces, '*', and '#' are allowed.",
@@ -65,24 +69,13 @@ public static class OldPhonePad
 
             if (current == ' ')
             {
-                if (currentKey != null)
-                {
-                    output.Append(DecodeKey(currentKey.Value, pressCount));
-                    currentKey = null;
-                    pressCount = 0;
-                }
-
+                FlushCurrentKey(output, ref currentKey, ref pressCount);
                 continue;
             }
 
             if (current == '*')
             {
-                if (currentKey != null)
-                {
-                    output.Append(DecodeKey(currentKey.Value, pressCount));
-                    currentKey = null;
-                    pressCount = 0;
-                }
+                FlushCurrentKey(output, ref currentKey, ref pressCount);
 
                 if (output.Length > 0)
                 {
@@ -105,18 +98,31 @@ public static class OldPhonePad
                 continue;
             }
 
-            output.Append(DecodeKey(currentKey.Value, pressCount));
+            FlushCurrentKey(output, ref currentKey, ref pressCount);
 
             currentKey = current;
             pressCount = 1;
         }
 
-        if (currentKey != null)
-        {
-            output.Append(DecodeKey(currentKey.Value, pressCount));
-        }
+        FlushCurrentKey(output, ref currentKey, ref pressCount);
 
         return output.ToString();
+    }
+
+    private static void FlushCurrentKey(
+        StringBuilder output,
+        ref char? currentKey,
+        ref int pressCount)
+    {
+        if (currentKey == null)
+        {
+            return;
+        }
+
+        output.Append(DecodeKey(currentKey.Value, pressCount));
+
+        currentKey = null;
+        pressCount = 0;
     }
 
     private static char DecodeKey(char key, int pressCount)
