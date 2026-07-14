@@ -3,5 +3,6 @@
     <Project Path="OldPhonePad.Core/OldPhonePad.Core.csproj" />
   </Folder>
   <Folder Name="/tests/" />
+  <Project Path="OldPhonePad.Api/OldPhonePad.Api.csproj" Id="d2b4f528-d952-48f0-bd14-d7ae4bda6e41" />
   <Project Path="OldPhonePad.Tests/OldPhonePad.Tests.csproj" Id="2249743b-dbba-43ed-8b96-ef16b2b8c4d5" />
 </Solution>
