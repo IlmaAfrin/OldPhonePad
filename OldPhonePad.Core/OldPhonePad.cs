@@ -37,6 +37,7 @@ public static class OldPhonePad
                 "Input must end with '#'.",
                 nameof(input));
         }
+
         foreach (char c in input)
         {
             if (!char.IsDigit(c) &&
@@ -56,10 +57,66 @@ public static class OldPhonePad
         StringBuilder output = new();
 
         char? currentKey = null;
-
         int pressCount = 0;
 
-        throw new NotImplementedException();
+        for (int i = 0; i < message.Length; i++)
+        {
+            char current = message[i];
+
+            if (current == ' ')
+            {
+                if (currentKey != null)
+                {
+                    output.Append(DecodeKey(currentKey.Value, pressCount));
+                    currentKey = null;
+                    pressCount = 0;
+                }
+
+                continue;
+            }
+
+            if (current == '*')
+            {
+                if (currentKey != null)
+                {
+                    output.Append(DecodeKey(currentKey.Value, pressCount));
+                    currentKey = null;
+                    pressCount = 0;
+                }
+
+                if (output.Length > 0)
+                {
+                    output.Length--;
+                }
+
+                continue;
+            }
+
+            if (currentKey == null)
+            {
+                currentKey = current;
+                pressCount = 1;
+                continue;
+            }
+
+            if (current == currentKey)
+            {
+                pressCount++;
+                continue;
+            }
+
+            output.Append(DecodeKey(currentKey.Value, pressCount));
+
+            currentKey = current;
+            pressCount = 1;
+        }
+
+        if (currentKey != null)
+        {
+            output.Append(DecodeKey(currentKey.Value, pressCount));
+        }
+
+        return output.ToString();
     }
 
     private static char DecodeKey(char key, int pressCount)

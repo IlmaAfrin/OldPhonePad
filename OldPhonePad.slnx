@@ -3,4 +3,5 @@
     <Project Path="OldPhonePad.Core/OldPhonePad.Core.csproj" />
   </Folder>
   <Folder Name="/tests/" />
+  <Project Path="OldPhonePad.Tests/OldPhonePad.Tests.csproj" Id="2249743b-dbba-43ed-8b96-ef16b2b8c4d5" />
 </Solution>
