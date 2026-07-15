@@ -93,10 +93,9 @@ integrated into an ASP.NET Core REST API.
 </p>
 
 <p>
-This REST API is a lightweight wrapper around the
-<strong>OldPhonePad</strong> library. It demonstrates how the library can
-be integrated into an ASP.NET Core application while keeping the decoding
-logic independent from the web layer.
+This API is a lightweight wrapper around the <strong>OldPhonePad</strong> library.
+It demonstrates how the library can be integrated into an ASP.NET Core application
+while keeping the decoding logic independent from the web layer.
 </p>
 
 <h2>Available Endpoint</h2>
@@ -108,7 +107,7 @@ logic independent from the web layer.
 <h2>Quick Start</h2>
 
 <p>
-Click any example below to try the API.
+Click any example below to try the API immediately.
 </p>
 
 <div class="example">
@@ -125,7 +124,7 @@ Request:
 </p>
 
 <p>
-Response:
+Expected response:
 </p>
 
 <pre>{ "result": "E" }</pre>
@@ -146,7 +145,7 @@ Request:
 </p>
 
 <p>
-Response:
+Expected response:
 </p>
 
 <pre>{ "result": "HELLO" }</pre>
@@ -167,7 +166,7 @@ Request:
 </p>
 
 <p>
-Response:
+Expected response:
 </p>
 
 <pre>{ "result": "B" }</pre>
@@ -179,8 +178,8 @@ Response:
 <strong>Note</strong>
 
 <p>
-The <code>#</code> character must be URL encoded when included in a query
-string. Its encoded representation is <code>%23</code>.
+The <code>#</code> character must be URL encoded when included in a query string.
+Its encoded representation is <code>%23</code>.
 </p>
 
 </div>
@@ -188,16 +187,14 @@ string. Its encoded representation is <code>%23</code>.
 <h2>About the Demo</h2>
 
 <p>
-This REST API is intentionally lightweight. Its purpose is to demonstrate
-how the <strong>OldPhonePad</strong> library can be integrated into another
-application while keeping the decoding logic completely independent from
-the web layer.
+This REST API is intentionally lightweight. Its purpose is to demonstrate how the
+<strong>OldPhonePad</strong> library can be integrated into another application while
+keeping the decoding logic completely independent from the web layer.
 </p>
 
 <p>
-Because the decoder is implemented as a reusable class library, it can
-easily be used in console applications, desktop applications, web APIs,
-or other .NET projects.
+Because the decoder is implemented as a reusable class library, it can easily be
+used in console applications, desktop applications, web APIs, or other .NET projects.
 </p>
 
 <footer>
@@ -211,8 +208,8 @@ https://github.com/IlmaAfrin/OldPhonePad
 </p>
 
 <p>
-For additional information, please refer to the README and Customer Guide
-included in the repository.
+For additional information, please refer to the README and Customer Guide included
+in the repository.
 </p>
 
 </footer>

@@ -28,6 +28,31 @@ public class OldPhonePadTests
 
         Assert.Equal("HELLO", result);
     }
+
+    [Fact]
+    public void Decode_ShouldReturnEmptyString_WhenInputIsOnlySendKey()
+    {
+        string result = Decoder.Decode("#");
+
+        Assert.Equal(string.Empty, result);
+    }
+
+    [Fact]
+    public void Decode_ShouldReturnEmptyString_WhenInputContainsOnlyBackspaces()
+    {
+        string result = Decoder.Decode("****#");
+
+        Assert.Equal(string.Empty, result);
+    }
+
+    [Fact]
+    public void Decode_ShouldIgnoreMultiplePauses()
+    {
+        string result = Decoder.Decode("44  33#");
+
+        Assert.Equal("HE", result);
+    }
+
     [Fact]
     public void Decode_ShouldThrowArgumentNullException_WhenInputIsNull()
     {
@@ -46,4 +71,9 @@ public class OldPhonePadTests
         Assert.Throws<ArgumentException>(() => Decoder.Decode("22A#"));
     }
 
+    [Fact]
+    public void Decode_ShouldThrowArgumentException_WhenCharactersExistAfterSendKey()
+    {
+        Assert.Throws<ArgumentException>(() => Decoder.Decode("33#22"));
+    }
 }
