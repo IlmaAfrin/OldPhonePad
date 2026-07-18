@@ -8,49 +8,61 @@ public class OldPhonePadTests
     [Fact]
     public void Decode_ShouldReturnE_For33()
     {
-        string result = Decoder.Decode("33#");
-
-        Assert.Equal("E", result);
+        Assert.Equal("E", Decoder.Decode("33#"));
     }
 
     [Fact]
     public void Decode_ShouldReturnB_For227Backspace()
     {
-        string result = Decoder.Decode("227*#");
-
-        Assert.Equal("B", result);
+        Assert.Equal("B", Decoder.Decode("227*#"));
     }
 
     [Fact]
     public void Decode_ShouldReturnHello()
     {
-        string result = Decoder.Decode("4433555 555666#");
+        Assert.Equal("HELLO", Decoder.Decode("4433555 555666#"));
+    }
 
-        Assert.Equal("HELLO", result);
+    [Fact]
+    public void Decode_ShouldWrapAroundKey2()
+    {
+        Assert.Equal("A", Decoder.Decode("2222#"));
+    }
+
+    [Fact]
+    public void Decode_ShouldWrapAroundKey3()
+    {
+        Assert.Equal("F", Decoder.Decode("333333#"));
     }
 
     [Fact]
     public void Decode_ShouldReturnEmptyString_WhenInputIsOnlySendKey()
     {
-        string result = Decoder.Decode("#");
-
-        Assert.Equal(string.Empty, result);
+        Assert.Equal(string.Empty, Decoder.Decode("#"));
     }
 
     [Fact]
     public void Decode_ShouldReturnEmptyString_WhenInputContainsOnlyBackspaces()
     {
-        string result = Decoder.Decode("****#");
+        Assert.Equal(string.Empty, Decoder.Decode("****#"));
+    }
 
-        Assert.Equal(string.Empty, result);
+    [Fact]
+    public void Decode_ShouldIgnoreBackspacesBeyondBeginning()
+    {
+        Assert.Equal(string.Empty, Decoder.Decode("***2***#"));
     }
 
     [Fact]
     public void Decode_ShouldIgnoreMultiplePauses()
     {
-        string result = Decoder.Decode("44  33#");
+        Assert.Equal("HE", Decoder.Decode("44  33#"));
+    }
 
-        Assert.Equal("HE", result);
+    [Fact]
+    public void Decode_ShouldReturnAB_ForSeparatedKeys()
+    {
+        Assert.Equal("AB", Decoder.Decode("2 22#"));
     }
 
     [Fact]
@@ -66,14 +78,14 @@ public class OldPhonePadTests
     }
 
     [Fact]
-    public void Decode_ShouldThrowArgumentException_WhenInputContainsInvalidCharacter()
-    {
-        Assert.Throws<ArgumentException>(() => Decoder.Decode("22A#"));
-    }
-
-    [Fact]
     public void Decode_ShouldThrowArgumentException_WhenCharactersExistAfterSendKey()
     {
         Assert.Throws<ArgumentException>(() => Decoder.Decode("33#22"));
+    }
+
+    [Fact]
+    public void Decode_ShouldThrowArgumentException_WhenInputContainsInvalidCharacter()
+    {
+        Assert.Throws<ArgumentException>(() => Decoder.Decode("22A#"));
     }
 }

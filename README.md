@@ -6,6 +6,15 @@ This solution was developed as part of the Iron Software Software Sales Engineer
 
 The focus of this project was not only to solve the problem correctly, but also to present the solution in a way that is easy to understand, maintain, test, and demonstrate to customers.
 
+## Out of Scope Items
+## Current Limitations
+
+This implementation is designed to decode alphabetic characters (A–Z) and spaces using the traditional multi-tap mobile phone keypad layout.
+
+Literal numbers (for example, the `26` in `street 26th avenue`) and other punctuations are not supported because digits are interpreted as keypad presses instead of text.
+
+Supporting numbers or additional symbols would require extra encoding rules, which are outside the scope of this coding implementation.
+
 ---
 
 # Project Overview
