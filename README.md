@@ -7,7 +7,6 @@ This solution was developed as part of the Iron Software Software Sales Engineer
 The focus of this project was not only to solve the problem correctly, but also to present the solution in a way that is easy to understand, maintain, test, and demonstrate to customers.
 
 ## Out of Scope Items
-## Current Limitations
 
 This implementation is designed to decode alphabetic characters (A–Z) and spaces using the traditional multi-tap mobile phone keypad layout.
 
